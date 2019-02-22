@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .times {
+        width: 330px;
+        height: 90px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+
+    .dot {
+        float: left;
+        width: 20px;
+        height: 80px;
+        font-size: 68px;
+        padding: 5px;
+        line-height: 70px;
+    }
+
+    .hours, .minutes, .seconds {
+        width: 90px;
+        height: 90px;
+        overflow: hidden;
+        background-color: #b0b0b0;
+        float: left;
+    }
+
+    .time-6 {
+        width: 35px;
+        padding: 0 5px 0 5px;
+        float: left;
+        background-color: #ff6700;
+        overflow: hidden;
+        margin-top: 0px;
+        transition: all 0.3s linear;
+    }
+
+    .time-6 span {
+        color: white;
+        font-size: 60px;
+        height: 90px;
+        line-height: 90px;
+        display: inline-block;
+    }
+</style>
+<body>
+<div class="times">
+    <div class="hours">
+        <div class="time-6 h1">
+            <span>0</span>
+            <span>1</span>
+            <span>2</span>
+            <span>0</span>
+        </div>
+        <div class="time-6 h2">
+            <span>3</span>
+            <span>0</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>0</span>
+        </div>
+    </div>
+    <div class="dot">:</div>
+    <div class="minutes">
+        <div class="time-6 m1">
+            <span>0</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>0</span>
+        </div>
+        <div class="time-6 m2">
+            <span>0</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>0</span>
+        </div>
+    </div>
+    <div class="dot">:</div>
+    <div class="seconds">
+        <div class="time-6 s1">
+            <span>0</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>0</span>
+        </div>
+        <div class="time-6 s2">
+            <span>0</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>0</span>
+        </div>
+    </div>
+</div>
+<script>
+    var h1s = document.getElementsByClassName('h1')[0];
+    var h2s = document.getElementsByClassName('h2')[0];
+    var m1s = document.getElementsByClassName('m1')[0];
+    var m2s = document.getElementsByClassName('m2')[0];
+    var s1s = document.getElementsByClassName('s1')[0];
+    var s2s = document.getElementsByClassName('s2')[0];
+    var timer=null;
+    time();
+    window.onload=function () {
+//        clearInterval(timer);
+        timer = setInterval(function () {
+            time();
+        }, 1000);
+    }
+    function time() {
+        var date = new Date();
+        hour = date.getHours();
+        h1 = Math.floor(hour / 10);
+        scrollTop3(h1, h1s);
+        h2 = hour % 10;
+        scrollTop4(h1, h2, h2s);
+        minute = date.getMinutes();
+        m1 = Math.floor(minute / 10);
+        scrollTop2(m1, m1s);
+        m2 = minute % 10;
+        scrollTop1(m2, m2s);
+        second = date.getSeconds();
+        s1 = Math.floor(second / 10);
+        scrollTop2(s1, s1s);
+        s2 = second % 10;
+        scrollTop1(s2, s2s);
+    }
+    function scrollTop1(topNum, e) {
+        var top = (-90) * topNum;
+//        console.log(topNum)
+        if (topNum == 0) {
+            e.style.marginTop = '-900px';
+            setTimeout(function () {
+                e.style.transition = 'none';
+                e.style.marginTop = '0px';
+            }, 700)
+        }
+        else {
+            e.style.marginTop = top + 'px';
+            e.style.transition = 'all 0.3s linear';
+        }
+    }
+    function scrollTop2(topNum, e) {
+        var top = (-90) * topNum;
+//        console.log(topNum == 0);
+        if (topNum == 0) {
+            e.style.marginTop = '-540px';
+            setTimeout(function () {
+                e.style.transition = 'none';
+                e.style.marginTop = '0px';
+            }, 700)
+        }
+        else {
+            e.style.marginTop = top + 'px';
+            e.style.transition = 'all 0.3s linear';
+        }
+    }
+    function scrollTop3(topNum, e) {
+        var top = (-90) * topNum;
+        if (topNum == 0) {
+            e.style.marginTop = '-270px';
+            setTimeout(function () {
+                e.style.transition = 'none';
+                e.style.marginTop = '0px';
+            }, 700)
+        }
+        else {
+            e.style.marginTop = top + 'px';
+            e.style.transition = 'all 0.3s linear';
+        }
+    }
+    function scrollTop4(topNum1, topNum2, e) {
+        var top = (-90) * (topNum2 + 1);
+        if (topNum2 == 0) {
+            e.style.marginTop = '-990px';
+            setTimeout(function () {
+                e.style.transition = 'none';
+                e.style.marginTop = '-90px';
+            }, 700)
+        } else if (topNum1 == 2 && topNum2 == 3) {
+            e.style.transition = 'none';
+            e.style.marginTop = '0px';
+            setTimeout(function () {
+                e.style.transition = 'all 0.3s linear';
+            }, 700)
+        }
+        else {
+            e.style.marginTop = top + 'px';
+            e.style.transition = 'all 0.3s linear';
+        }
+    }
+
+</script>
+</body>
+</html>
